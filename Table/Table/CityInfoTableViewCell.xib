@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CityInfoTableViewCell" customModule="Table" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="104" id="KGk-i7-Jjw" customClass="CityInfoTableViewCell" customModule="Table" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="CityInfoTableViewCell" customModule="Table" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="98.666666666666671"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9a-mN-cdW">
+                        <rect key="frame" x="20" y="31" width="0.0" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City: Novokuibyshevsk" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV1-qd-G9W">
+                        <rect key="frame" x="20" y="10.999999999999998" width="186.66666666666666" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Population: 1000000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQh-Gt-BGq">
+                        <rect key="frame" x="234.33333333333337" y="10.999999999999998" width="159.66666666666663" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year: 2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0m-Zz-GGc">
+                        <rect key="frame" x="20" y="67" width="84" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Area: 100.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewJ-eF-UP6">
+                        <rect key="frame" x="297" y="67" width="97" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NQh-Gt-BGq" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="91L-j2-Z3b"/>
+                    <constraint firstItem="ewJ-eF-UP6" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="HUO-7T-Xb6"/>
+                    <constraint firstItem="oV1-qd-G9W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Oir-C5-03A"/>
+                    <constraint firstItem="Y0m-Zz-GGc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="UQD-7h-Vla"/>
+                    <constraint firstItem="ewJ-eF-UP6" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="otW-9v-1KF"/>
+                    <constraint firstItem="NQh-Gt-BGq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="prB-bv-Jb9"/>
+                    <constraint firstItem="Y0m-Zz-GGc" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="u1s-HS-OkL"/>
+                    <constraint firstItem="oV1-qd-G9W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="zGd-HH-tnf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.49832094469999999" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="areaLabel" destination="ewJ-eF-UP6" id="EvU-93-hJe"/>
+                <outlet property="nameLabel" destination="oV1-qd-G9W" id="jbA-Ud-e2n"/>
+                <outlet property="populationLabel" destination="NQh-Gt-BGq" id="ZXx-mF-GfA"/>
+                <outlet property="yearLabel" destination="Y0m-Zz-GGc" id="LgT-Q4-wgU"/>
+            </connections>
+            <point key="canvasLocation" x="145.51630434782609" y="-33.333333333333336"/>
+        </tableViewCell>
+    </objects>
+</document>
