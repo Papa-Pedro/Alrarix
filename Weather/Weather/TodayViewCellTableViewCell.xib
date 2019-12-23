@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="167" id="KGk-i7-Jjw" customClass="TodayViewCellTableViewCell" customModule="Weather" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="329" height="167"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="329" height="166.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go0-F7-rzk">
+                        <rect key="frame" x="16" y="111" width="297" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="297" id="v8O-hY-soS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZE-al-X3o">
+                        <rect key="frame" x="111" y="26" width="107" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="107" id="Fu5-Vj-Kbw"/>
+                            <constraint firstAttribute="height" constant="60" id="GFv-hf-W0N"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="AZE-al-X3o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="4R6-8X-DMs"/>
+                    <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="AZE-al-X3o" secondAttribute="bottom" constant="25" id="5zX-Cg-1vp"/>
+                    <constraint firstItem="AZE-al-X3o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="95" id="Aay-82-OuH"/>
+                    <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="AZE-al-X3o" secondAttribute="bottom" constant="25" id="Ux5-lF-uYo"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="go0-F7-rzk" secondAttribute="bottom" constant="20" id="WjZ-KE-g5B"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="AZE-al-X3o" secondAttribute="trailing" constant="95" id="gnG-vq-YCR"/>
+                    <constraint firstItem="go0-F7-rzk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="sjh-nn-0AQ"/>
+                    <constraint firstItem="go0-F7-rzk" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="tkO-m1-Nos"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="feltLabel" destination="go0-F7-rzk" id="eyO-9I-pDr"/>
+                <outlet property="temperatureLabel" destination="AZE-al-X3o" id="dXh-Wg-8VH"/>
+            </connections>
+            <point key="canvasLocation" x="-36" y="34.632683658170919"/>
+        </tableViewCell>
+    </objects>
+</document>
