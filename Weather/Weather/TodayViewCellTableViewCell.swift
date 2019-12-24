@@ -12,5 +12,6 @@ class TodayViewCellTableViewCell: UITableViewCell {
 
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var feltLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
 }

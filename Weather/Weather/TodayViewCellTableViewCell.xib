@@ -19,35 +19,55 @@
                 <rect key="frame" x="0.0" y="0.0" width="329" height="166.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go0-F7-rzk">
-                        <rect key="frame" x="263" y="114" width="37" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go0-F7-rzk">
+                        <rect key="frame" x="28" y="97" width="272" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZE-al-X3o">
-                        <rect key="frame" x="111" y="26" width="107" height="60"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZE-al-X3o">
+                        <rect key="frame" x="111" y="26" width="107" height="43"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Ощущается как " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ma8-gS-RcE">
-                        <rect key="frame" x="156" y="114" width="106" height="26"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kid-kG-oqC">
+                        <rect key="frame" x="226" y="26" width="87" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="87" id="AUY-ET-idd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.71568585129999995" blue="0.25552060929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter City" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uv-My-5ES">
+                        <rect key="frame" x="221" y="49" width="97" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="kid-kG-oqC" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="77z-8R-P1R"/>
+                    <constraint firstItem="AZE-al-X3o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="95" id="H2G-uv-Og4"/>
+                    <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="kid-kG-oqC" secondAttribute="bottom" constant="50" id="PN5-hm-MkO"/>
+                    <constraint firstItem="AZE-al-X3o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="PVl-dd-dMl"/>
+                    <constraint firstItem="kid-kG-oqC" firstAttribute="leading" secondItem="AZE-al-X3o" secondAttribute="trailing" constant="8" id="Q3w-Xr-rvQ"/>
+                    <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="AZE-al-X3o" secondAttribute="bottom" constant="28" id="TiZ-GQ-rOw"/>
+                    <constraint firstItem="go0-F7-rzk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="W9u-15-YfJ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="go0-F7-rzk" secondAttribute="trailing" constant="13" id="cMz-NM-gOq"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="go0-F7-rzk" secondAttribute="bottom" constant="38.5" id="hFV-Of-Ghp"/>
+                    <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="AZE-al-X3o" secondAttribute="bottom" constant="28" id="o2U-oo-rgv"/>
+                    <constraint firstItem="kid-kG-oqC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="t4s-1c-bPm"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="AZE-al-X3o" secondAttribute="trailing" constant="95" id="tGg-q9-GXC"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="feltLabel" destination="go0-F7-rzk" id="eyO-9I-pDr"/>
+                <outlet property="nameLabel" destination="kid-kG-oqC" id="iwi-lQ-zjg"/>
                 <outlet property="temperatureLabel" destination="AZE-al-X3o" id="dXh-Wg-8VH"/>
             </connections>
             <point key="canvasLocation" x="-36" y="34.632683658170919"/>
