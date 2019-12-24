@@ -21,8 +21,8 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-
+        //self.view.backgroundColor = UIColor.blue
+        
         arrayData = [infoToday(cell: 1, text1: "-17", text2: "-23"),
                      infoToday(cell: 2, text1: "mondey", text2: "-5"),
                      infoToday(cell: 1, text1: "", text2: "")]
@@ -53,11 +53,11 @@ class TableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayData.count-1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if arrayData[indexPath.row].cell == 1 {
+        if indexPath.row == 0 {
             
             let cell = Bundle.main.loadNibNamed("TodayViewCellTableViewCell", owner: self, options: nil)?.first as! TodayViewCellTableViewCell
             self.view = view
@@ -80,10 +80,19 @@ class TableViewController: UITableViewController {
 
         
     }
+    //тут переход между экранами должен быть
+    /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = indexPath.row
+        if indexPath == 1 {
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let AllResultTableViewController = mainStoryboard.instantiateViewController(withIdentifier: "AllResultTableViewController")
+            self.navigationController?.pushViewController(AllResultTableViewController, animated: true)
+        }
+    }*/
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if arrayData[indexPath.row].cell == 1 {
-            return 167
+            return 166.5
         } else {
             return 93
         }
