@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kid-kG-oqC">
-                        <rect key="frame" x="226" y="26" width="87" height="21"/>
+                        <rect key="frame" x="226" y="30" width="87" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="87" id="AUY-ET-idd"/>
                         </constraints>
@@ -40,33 +40,45 @@
                         <color key="textColor" red="1" green="0.71568585129999995" blue="0.25552060929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter City" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uv-My-5ES">
-                        <rect key="frame" x="221" y="49" width="97" height="30"/>
+                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter City" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uv-My-5ES">
+                        <rect key="frame" x="9" y="126" width="97" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJJ-aS-Yf5">
+                        <rect key="frame" x="111" y="126" width="46" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="nameCityButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kW6-u4-8Po"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstItem="AZE-al-X3o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="5BA-22-Rg1"/>
                     <constraint firstItem="kid-kG-oqC" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="77z-8R-P1R"/>
+                    <constraint firstItem="kid-kG-oqC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="7nK-CY-Gnc"/>
                     <constraint firstItem="AZE-al-X3o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="95" id="H2G-uv-Og4"/>
                     <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="kid-kG-oqC" secondAttribute="bottom" constant="50" id="PN5-hm-MkO"/>
-                    <constraint firstItem="AZE-al-X3o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="PVl-dd-dMl"/>
                     <constraint firstItem="kid-kG-oqC" firstAttribute="leading" secondItem="AZE-al-X3o" secondAttribute="trailing" constant="8" id="Q3w-Xr-rvQ"/>
                     <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="AZE-al-X3o" secondAttribute="bottom" constant="28" id="TiZ-GQ-rOw"/>
                     <constraint firstItem="go0-F7-rzk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="W9u-15-YfJ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="go0-F7-rzk" secondAttribute="trailing" constant="13" id="cMz-NM-gOq"/>
                     <constraint firstAttribute="bottomMargin" secondItem="go0-F7-rzk" secondAttribute="bottom" constant="38.5" id="hFV-Of-Ghp"/>
                     <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="AZE-al-X3o" secondAttribute="bottom" constant="28" id="o2U-oo-rgv"/>
-                    <constraint firstItem="kid-kG-oqC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="t4s-1c-bPm"/>
                     <constraint firstAttribute="trailingMargin" secondItem="AZE-al-X3o" secondAttribute="trailing" constant="95" id="tGg-q9-GXC"/>
+                    <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="97" id="wRU-Fd-dsL"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="feltLabel" destination="go0-F7-rzk" id="eyO-9I-pDr"/>
+                <outlet property="nameCityField" destination="1uv-My-5ES" id="0da-Fv-Po1"/>
                 <outlet property="nameLabel" destination="kid-kG-oqC" id="iwi-lQ-zjg"/>
                 <outlet property="temperatureLabel" destination="AZE-al-X3o" id="dXh-Wg-8VH"/>
             </connections>

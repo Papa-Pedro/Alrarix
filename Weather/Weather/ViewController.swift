@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Weather
-//
-//  Created by Tim Ferens on 24.12.2019.
-//  Copyright © 2019 Tim Ferens. All rights reserved.
-//
-
 import UIKit
 
 struct infoToday {
@@ -21,16 +13,21 @@ class TableViewController: UITableViewController {
     var tempMin = 0.0
     var tempMax = 0.0//инф о текущем дне
     var name = ""
+    
+    var nameOfLabel = "London" //сюда извлекаем информацию
 
     var arrayData = [infoToday]()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+
+
         arrayData = [infoToday(cell: 1, text1: "-17", text2: "-23"),
                      infoToday(cell: 2, text1: "mondey", text2: "-5"),
                      infoToday(cell: 1, text1: "", text2: "")]
         
-        
-        APIServices().getObjectToday(city: "London") {
+        APIServices().getObjectToday(city: nameOfLabel) {
             [weak self] (result: WeatherData?, error: Error?) in
             if let error = error {
                 print("\(error)")
@@ -43,9 +40,6 @@ class TableViewController: UITableViewController {
                 print("no")
             }
         }
-        
-      
-        //print("\(temp!), \(feels!)")
     }
     
     private func update(from result: WeatherData) {
@@ -57,7 +51,7 @@ class TableViewController: UITableViewController {
         tableView.reloadData()
     }
 
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayData.count-1
     }
@@ -66,15 +60,20 @@ class TableViewController: UITableViewController {
         if arrayData[indexPath.row].cell == 1 {
             
             let cell = Bundle.main.loadNibNamed("TodayViewCellTableViewCell", owner: self, options: nil)?.first as! TodayViewCellTableViewCell
+            self.view = view
+            self.view.frame = view.bounds
+            cell.delegate = self //вызываем делегат и получаем все его свойства
+            
             cell.temperatureLabel.text = String("\(Int(temp - 273.15))º")
             cell.feltLabel.text = String("\(Int(tempMin - 273.15))º/\(Int(tempMax    - 273.15))º Ощущается как \(Int(feels - 273.15))º")
-            cell.nameLabel.text = name
+            cell.nameLabel.text = name //изменен name на nameText
+            
             
             return cell
         } else {
             let cell = Bundle.main.loadNibNamed("DayTableViewCell", owner: self, options: nil)?.first as! DayTableViewCell
-            cell.daysLabel.text = arrayData[indexPath.row].text1
-            cell.weatherDayLabel.text = arrayData[indexPath.row].text2
+           // cell.daysLabel.text = arrayData[indexPath.row].text1
+            //cell.weatherDayLabel.text = arrayData[indexPath.row].text2
             
             return cell
         }
@@ -91,3 +90,22 @@ class TableViewController: UITableViewController {
     }
 }
 
+extension TableViewController: Delegate {
+    func touchInView(_ view: TodayViewCellTableViewCell) {
+        let newText = (view.nameCityField.text ?? "")
+        view.nameLabel.text = newText
+        nameOfLabel = newText
+        APIServices().getObjectToday(city: nameOfLabel) {
+            [weak self] (result: WeatherData?, error: Error?) in
+            if let error = error {
+                print("\(error)")
+                print("yes")
+            } else if let result = result {
+                self?.update(from: result)
+                self?.tableView.reloadData()
+                print("no")
+            }
+        }
+        
+    }
+}
