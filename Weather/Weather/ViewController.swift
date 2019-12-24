@@ -15,6 +15,9 @@ struct infoToday {
 }
 
 class TableViewController: UITableViewController {
+    
+    var temp = 0.0
+    var feels = 0.0 //инф о текущем дне
 
     var arrayData = [infoToday]()
     
@@ -23,19 +26,31 @@ class TableViewController: UITableViewController {
                      infoToday(cell: 2, text1: "mondey", text2: "-5"),
                      infoToday(cell: 1, text1: "", text2: "")]
         
+        
         APIServices().getObjectToday() {
-            /*[weak self]*/ (result: WeatherData?, error: Error?) in
+            [weak self] (result: WeatherData?, error: Error?) in
             if let error = error {
                 print("\(error)")
                 print("yes")
             } else if let result = result {
-                print("\(result)")
+                //self.temp = result.main.temp
+                //self?.feels = result.main.feels
+                self?.update(from: result)
+                //print("\(self?.temp!), \(self?.feels!)")
                 print("no")
             }
         }
         
-        
+      
+        //print("\(temp!), \(feels!)")
     }
+    
+    private func update(from result: WeatherData) {
+        feels = result.main.feels
+        temp = result.main.temp
+        tableView.reloadData()
+    }
+
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayData.count-1
@@ -45,8 +60,8 @@ class TableViewController: UITableViewController {
         if arrayData[indexPath.row].cell == 1 {
             
             let cell = Bundle.main.loadNibNamed("TodayViewCellTableViewCell", owner: self, options: nil)?.first as! TodayViewCellTableViewCell
-            cell.temperatureLabel.text = arrayData[indexPath.row].text1
-            cell.feltLabel.text = arrayData[indexPath.row].text2
+            cell.temperatureLabel.text = String("\(Int(temp - 273.15))º")
+            cell.feltLabel.text = String("\(Int(feels - 273.15))º")
             
             return cell
         } else {
