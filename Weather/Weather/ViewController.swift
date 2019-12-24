@@ -15,22 +15,15 @@ class TableViewController: UITableViewController {
     var name = ""
     
     var nameOfLabel = "London" //сюда извлекаем информацию
-
-    var arrayData = [infoToday]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //self.view.backgroundColor = UIColor.blue
-        
-        arrayData = [infoToday(cell: 1, text1: "-17", text2: "-23"),
-                     infoToday(cell: 2, text1: "mondey", text2: "-5"),
-                     infoToday(cell: 1, text1: "", text2: "")]
         
         APIServices().getObjectToday(city: nameOfLabel) {
             [weak self] (result: WeatherData?, error: Error?) in
             if let error = error {
                 print("\(error)")
+                
                 print("yes")
             } else if let result = result {
                 //self.temp = result.main.temp
@@ -91,7 +84,7 @@ class TableViewController: UITableViewController {
     }*/
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if arrayData[indexPath.row].cell == 1 {
+        if indexPath.row == 0 {
             return 166.5
         } else {
             return 93

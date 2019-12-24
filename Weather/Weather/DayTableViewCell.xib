@@ -20,20 +20,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71E-96-Uwj">
-                        <rect key="frame" x="65" y="31" width="240" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="240" id="h3X-N3-MEo"/>
-                        </constraints>
+                        <rect key="frame" x="0.0" y="0.0" width="370" height="92.5"/>
                         <state key="normal" title="Узнать погоду на несколько дней"/>
                     </button>
                 </subviews>
                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 <constraints>
-                    <constraint firstItem="71E-96-Uwj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="Ehv-FC-Cc4"/>
-                    <constraint firstItem="71E-96-Uwj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="49" id="KDr-7x-i7I"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="71E-96-Uwj" secondAttribute="bottom" constant="21" id="gcC-L3-TtI"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="71E-96-Uwj" secondAttribute="trailing" constant="49" id="viX-nx-3VP"/>
+                    <constraint firstItem="71E-96-Uwj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0zB-yJ-Yid"/>
+                    <constraint firstItem="71E-96-Uwj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YKu-QU-9i7"/>
+                    <constraint firstAttribute="trailing" secondItem="71E-96-Uwj" secondAttribute="trailing" id="fAB-Jx-TYy"/>
+                    <constraint firstAttribute="bottom" secondItem="71E-96-Uwj" secondAttribute="bottom" id="j8t-rz-qGC"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
