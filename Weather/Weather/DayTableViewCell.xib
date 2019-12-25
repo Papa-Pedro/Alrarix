@@ -22,6 +22,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71E-96-Uwj">
                         <rect key="frame" x="0.0" y="0.0" width="370" height="92.5"/>
                         <state key="normal" title="Узнать погоду на несколько дней"/>
+                        <connections>
+                            <action selector="goNextNewButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="aZ3-sM-h78"/>
+                        </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -34,6 +37,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="goNextButton" destination="71E-96-Uwj" id="AJM-yk-ixp"/>
+            </connections>
             <point key="canvasLocation" x="177.59999999999999" y="176.76161919040482"/>
         </tableViewCell>
     </objects>

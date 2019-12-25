@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w9V-jm-t9F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zxu-Gy-VZZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Main-->
         <scene sceneID="xXG-81-TZc">
             <objects>
-                <tableViewController title="Main" id="w9V-jm-t9F" customClass="TableViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Main" title="Main" id="w9V-jm-t9F" customClass="TableViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="hkU-an-ezf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,15 +35,19 @@
                             <outlet property="delegate" destination="w9V-jm-t9F" id="tFd-tu-ppc"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="f9u-Vj-O4I"/>
+                    <connections>
+                        <segue destination="my6-8b-kM5" kind="show" id="k6w-MN-BfV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cwz-5t-yKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="65" y="165"/>
+            <point key="canvasLocation" x="-33" y="162"/>
         </scene>
         <!--AllResultTableViewController-->
         <scene sceneID="1pZ-6E-uZ4">
             <objects>
-                <tableViewController title="AllResultTableViewController" id="my6-8b-kM5" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="nextView" title="AllResultTableViewController" id="my6-8b-kM5" customClass="TableViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="APL-p1-c9R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,6 +71,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JoT-6J-yWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="732" y="166"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Zpx-XN-deK">
+            <objects>
+                <navigationController id="zxu-Gy-VZZ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PIy-nC-zin">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="w9V-jm-t9F" kind="relationship" relationship="rootViewController" id="9FI-tm-khX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w8w-yu-fIC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-834" y="163"/>
         </scene>
     </scenes>
 </document>

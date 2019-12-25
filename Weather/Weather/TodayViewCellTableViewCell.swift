@@ -1,4 +1,5 @@
 import UIKit
+
 protocol Delegate: class {
     func touchInView(_ view: TodayViewCellTableViewCell)
 }
