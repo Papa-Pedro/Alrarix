@@ -10,9 +10,11 @@ struct WeatherSomeDay: Codable {
 
 struct ListSome: Codable {
     let main: MainSome
+    let dt: String
     
     enum CodingKeys: String, CodingKey {
         case main = "main"
+        case dt = "dt_txt"
     }
 }
 

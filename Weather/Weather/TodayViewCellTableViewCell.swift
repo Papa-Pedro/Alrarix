@@ -14,4 +14,5 @@ class TodayViewCellTableViewCell: UITableViewCell {
     @IBAction func nameCityButton(_ sender: UIButton) {
         delegate?.touchInView(self)
     }
+    
 }

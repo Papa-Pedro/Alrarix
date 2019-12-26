@@ -5,10 +5,14 @@ struct infoToday {
     let text1: String!
     let text2: String!
 }
-
-
+//создаем делегат
+//protocol DelegateSecond {
+ //   func touchInSecondView(_ view: String)
+//}/
 
 class TableViewController: UITableViewController {
+    //инициализируем делегат
+   // var delegate: DelegateSecond?
     
     var temp = 0.0
     var feels = 0.0
@@ -51,6 +55,7 @@ class TableViewController: UITableViewController {
         if indexPath.row == 0 {
             
             let cell = Bundle.main.loadNibNamed("TodayViewCellTableViewCell", owner: self, options: nil)?.first as! TodayViewCellTableViewCell
+            
             cell.delegate = self //вызываем делегат и получаем все его свойства теперь будет вызван extension
             
             cell.temperatureLabel.text = String("\(Int(temp - 273.15))º")
@@ -74,6 +79,13 @@ class TableViewController: UITableViewController {
             return 93
         }
     }
+    
+    
+  //  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      /*  let TableSecondViewController: TableSecondController = segue.destination as! TableSecondController
+        let cell = Bundle.main.loadNibNamed("TodayViewCellTableViewCell", owner: self, options: nil)?.first as! TodayViewCellTableViewCell
+        TableSecondViewController.nameSity  = cell.nameLabel.text!*/
+   // }
 }
 
 extension TableViewController: Delegate {
@@ -84,12 +96,12 @@ extension TableViewController: Delegate {
         APIServices().getObjectToday(city: nameOfLabel) {
             [weak self] (result: WeatherData?, error: Error?) in
             if let error = error {
+                print("no1")
                 print("\(error)")
-                print("yes")
+                print("no")
             } else if let result = result {
                 self?.update(from: result)
                 self?.tableView.reloadData()
-                print("no")
             }
         }
     }
@@ -97,15 +109,22 @@ extension TableViewController: Delegate {
 //вызов делегата 2 ячейки
 extension TableViewController: DayDelegate {
     func dayView(_ view: DayTableViewCell) {
+      //  let dest = storyboard?.instantiateViewController(withIdentifier: "nextView") as! TableSecondController
+      //  print(name)
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let nextTableViewController = mainStoryboard.instantiateViewController(withIdentifier: "nextView")
+        
+      //  let info = name
+       // delegate?.touchInSecondView(info)
+        //delegate1?.touchInSecondView(self) //передаем делегат
+        
+        //self.gfvv
         self.navigationController?.pushViewController(nextTableViewController, animated: true)
     }
 }
 //работаем с NavigationBar (скрываем его)
 extension TableViewController {
-    func hideNavigationBar() {
+    func hideNavigationBar() {//
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }
-

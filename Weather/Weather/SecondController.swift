@@ -3,10 +3,15 @@ import UIKit
 class TableSecondController: UITableViewController {
     //массив с получеными температурами
     var arrayTemperature = [Double] (repeating: 0.0, count: 40)
+    var arrayData = [String] (repeating: "", count: 5)
+    //для переданного текста
+    var nameSity = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Погода на 5 дней"
+        
+        self.navigationItem.title = "Погода на 5 дней (\(nameSity))"
+        
         //вынимаем данные с сервера
         APIServices().getObjectSomeDay(city: "Samara") {
             [weak self] (result: WeatherSomeDay?, error: Error?) in
@@ -15,17 +20,22 @@ class TableSecondController: UITableViewController {
                 print("\(error)")
                 print("no")
             } else if let result = result {
-                print("yes")
                 self?.arrayTemperature.removeAll()
+                self?.arrayData.removeAll()
                 self?.update(from: result)
-               // print(self?.arrayTemperature.count)
             }
         }
     }
     //заполняем массив
     private func update(from result: WeatherSomeDay) {
-        for value in result.list {
-            arrayTemperature.append(value.main.temp)
+        
+      for index in 0..<result.list.count {
+        if index % 8 == 0 {
+            var str = result.list[index].dt
+            str.removeLast(9)
+            arrayData.append(str)
+        }
+        arrayTemperature.append(result.list[index].main.temp)
         }
         tableView.reloadData()
     }
@@ -39,6 +49,7 @@ class TableSecondController: UITableViewController {
         
         if indexPath.row == 0{
             let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
+            cell.DataLabel.text = arrayData[indexPath.row]//String()
             cell.tempLabel1.text = String("\(Int(arrayTemperature[0] - 273.15))º")
             cell.temaLabel2.text = String("\(Int(arrayTemperature[2] - 273.15))º")
             cell.tempLabel3.text = String("\(Int(arrayTemperature[4] - 273.15))º")
@@ -49,6 +60,7 @@ class TableSecondController: UITableViewController {
         }
         if indexPath.row == 1{
             let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
+            cell.DataLabel.text = arrayData[indexPath.row]
             cell.tempLabel1.text = String("\(Int(arrayTemperature[8] - 273.15))º")
             cell.temaLabel2.text = String("\(Int(arrayTemperature[10] - 273.15))º")
             cell.tempLabel3.text = String("\(Int(arrayTemperature[12] - 273.15))º")
@@ -59,6 +71,7 @@ class TableSecondController: UITableViewController {
         }
         if indexPath.row == 1{
             let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
+            cell.DataLabel.text = arrayData[indexPath.row]
             cell.tempLabel1.text = String("\(Int(arrayTemperature[16] - 273.15))º")
             cell.temaLabel2.text = String("\(Int(arrayTemperature[18] - 273.15))º")
             cell.tempLabel3.text = String("\(Int(arrayTemperature[20] - 273.15))º")
@@ -69,6 +82,7 @@ class TableSecondController: UITableViewController {
         }
         if indexPath.row == 1{
             let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
+            cell.DataLabel.text = arrayData[indexPath.row]
             cell.tempLabel1.text = String("\(Int(arrayTemperature[24] - 273.15))º")
             cell.temaLabel2.text = String("\(Int(arrayTemperature[26] - 273.15))º")
             cell.tempLabel3.text = String("\(Int(arrayTemperature[28] - 273.15))º")
@@ -78,6 +92,7 @@ class TableSecondController: UITableViewController {
             return cell
         }
             let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
+            cell.DataLabel.text = arrayData[indexPath.row]
             cell.tempLabel1.text = String("\(Int(arrayTemperature[32] - 273.15))º")
             cell.temaLabel2.text = String("\(Int(arrayTemperature[34] - 273.15))º")
             cell.tempLabel3.text = String("\(Int(arrayTemperature[36] - 273.15))º")
@@ -87,7 +102,10 @@ class TableSecondController: UITableViewController {
             return cell
     }
     
-    
-    
-    
 }
+/*
+extension TableSecondController: DelegateSecond {
+    func touchInSecondView(_ view: TableViewController) {
+        
+    }
+}*/
