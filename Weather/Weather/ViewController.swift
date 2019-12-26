@@ -6,6 +6,8 @@ struct infoToday {
     let text2: String!
 }
 
+
+
 class TableViewController: UITableViewController {
     
     var temp = 0.0
@@ -13,19 +15,19 @@ class TableViewController: UITableViewController {
     var tempMin = 0.0
     var tempMax = 0.0//инф о текущем дне
     var name = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Погода"
         
         APIServices().getObjectToday(city: "Samara") {
             [weak self] (result: WeatherData?, error: Error?) in
             if let error = error {
+                print("Error 1 start")
                 print("\(error)")
-                
-                print("yes")
+                print("Error 1 finish")
             } else if let result = result {
                 self?.update(from: result)
-                print("no")
             }
         }
     }
@@ -45,6 +47,7 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.row == 0 {
             
             let cell = Bundle.main.loadNibNamed("TodayViewCellTableViewCell", owner: self, options: nil)?.first as! TodayViewCellTableViewCell
@@ -91,7 +94,7 @@ extension TableViewController: Delegate {
         }
     }
 }
-
+//вызов делегата 2 ячейки
 extension TableViewController: DayDelegate {
     func dayView(_ view: DayTableViewCell) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -99,3 +102,10 @@ extension TableViewController: DayDelegate {
         self.navigationController?.pushViewController(nextTableViewController, animated: true)
     }
 }
+//работаем с NavigationBar (скрываем его)
+extension TableViewController {
+    func hideNavigationBar() {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+}
+
