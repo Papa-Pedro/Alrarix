@@ -19,23 +19,18 @@ class TableViewController: UITableViewController {
         print(UserDefaults.standard.double(forKey: "temp"))
         if UserDefaults.standard.double(forKey: "temp") != 0.0 {
             temp = UserDefaults.standard.double(forKey: "temp")
-             print("temp! = \(String(describing: temp))")
         }
         if UserDefaults.standard.double(forKey: "feels") != 0.0 {
             feels = UserDefaults.standard.double(forKey: "feels")
-            print("temp!! = \(String(describing: feels))")
         }
         if UserDefaults.standard.double(forKey: "temp_min") != 0.0 {
             tempMin = UserDefaults.standard.double(forKey: "temp_min")
-            print("temp!!! = \(String(describing: tempMin))")
         }
        if UserDefaults.standard.double(forKey: "temp_max") != 0.0 {
             tempMax = UserDefaults.standard.double(forKey: "temp_max")
-            print("temp!!!! = \(String(describing: tempMax))")
         }
         if UserDefaults.standard.string(forKey: "name") != nil {
             name = UserDefaults.standard.string(forKey: "name")!
-            //print("temp!!!!! = " + name)
         }
         
         self.navigationItem.title = "Погода"

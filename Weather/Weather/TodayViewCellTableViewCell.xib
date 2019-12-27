@@ -40,17 +40,21 @@
                         <color key="textColor" red="1" green="0.71568585129999995" blue="0.25552060929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter City" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uv-My-5ES">
-                        <rect key="frame" x="9" y="126" width="97" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" text="Enter City" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uv-My-5ES">
+                        <rect key="frame" x="9" y="126" width="85" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="85" id="FZw-PJ-pAe"/>
+                        </constraints>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJJ-aS-Yf5">
-                        <rect key="frame" x="111" y="126" width="46" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJJ-aS-Yf5">
+                        <rect key="frame" x="104" y="126" width="46" height="30"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="46" id="npF-r2-qfg"/>
+                        </constraints>
                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" title="Button"/>
                         <connections>
@@ -68,11 +72,16 @@
                     <constraint firstItem="kid-kG-oqC" firstAttribute="leading" secondItem="AZE-al-X3o" secondAttribute="trailing" constant="8" id="Q3w-Xr-rvQ"/>
                     <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="AZE-al-X3o" secondAttribute="bottom" constant="28" id="TiZ-GQ-rOw"/>
                     <constraint firstItem="go0-F7-rzk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="W9u-15-YfJ"/>
+                    <constraint firstItem="kJJ-aS-Yf5" firstAttribute="top" secondItem="go0-F7-rzk" secondAttribute="bottom" constant="8.5" id="Y7L-1p-2Kl"/>
+                    <constraint firstItem="kJJ-aS-Yf5" firstAttribute="leading" secondItem="1uv-My-5ES" secondAttribute="trailing" constant="10" id="bM7-0p-3Ot"/>
+                    <constraint firstItem="1uv-My-5ES" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="bR2-ky-cz9"/>
+                    <constraint firstAttribute="bottom" secondItem="1uv-My-5ES" secondAttribute="bottom" constant="10.5" id="btc-kq-KCV"/>
                     <constraint firstAttribute="trailingMargin" secondItem="go0-F7-rzk" secondAttribute="trailing" constant="13" id="cMz-NM-gOq"/>
                     <constraint firstAttribute="bottomMargin" secondItem="go0-F7-rzk" secondAttribute="bottom" constant="38.5" id="hFV-Of-Ghp"/>
                     <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="AZE-al-X3o" secondAttribute="bottom" constant="28" id="o2U-oo-rgv"/>
                     <constraint firstAttribute="trailingMargin" secondItem="AZE-al-X3o" secondAttribute="trailing" constant="95" id="tGg-q9-GXC"/>
                     <constraint firstItem="go0-F7-rzk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="97" id="wRU-Fd-dsL"/>
+                    <constraint firstAttribute="bottom" secondItem="kJJ-aS-Yf5" secondAttribute="bottom" constant="10.5" id="xoa-lM-ZVH"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
