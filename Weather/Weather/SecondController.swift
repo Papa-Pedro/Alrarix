@@ -2,18 +2,23 @@ import UIKit
 
 class TableSecondController: UITableViewController {
     //массив с получеными температурами
-    var arrayTemperature = [Double] (repeating: 0.0, count: 40)
-    var arrayData = [String] (repeating: "", count: 5)
-    //для переданного текста
-    var nameSity = ""
+    var arrayTemperature = [Double] (repeating: 0.0, count: 40) //погода
+    var arrayData = [String] (repeating: "", count: 5) //день
+    var nameSity = "" //для переданного текста
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UserDefaults.standard.array(forKey: "dt_txt") != nil {
+            arrayData.removeAll()
+            arrayData = (UserDefaults.standard.array(forKey: "dt_txt") as? [String])!
+        }
+        if UserDefaults.standard.array(forKey: "tempSomeDay") != nil {
+            arrayTemperature = UserDefaults.standard.array(forKey: "tempSomeDay") as? [Double] ?? [0.0]
+        }
         
-        self.navigationItem.title = "Погода на 5 дней (\(nameSity))"
-        
+        self.navigationItem.title = "Погода на 5 дней в \(nameSity)"
         //вынимаем данные с сервера
-        APIServices().getObjectSomeDay(city: "Samara") {
+        APIServices().getObjectSomeDay(city: nameSity) {
             [weak self] (result: WeatherSomeDay?, error: Error?) in
             if let error = error {
                 print("no")
@@ -28,7 +33,6 @@ class TableSecondController: UITableViewController {
     }
     //заполняем массив
     private func update(from result: WeatherSomeDay) {
-        
       for index in 0..<result.list.count {
         if index % 8 == 0 {
             var str = result.list[index].dt
@@ -37,6 +41,7 @@ class TableSecondController: UITableViewController {
         }
         arrayTemperature.append(result.list[index].main.temp)
         }
+        saveCheckItem()
         tableView.reloadData()
     }
     
@@ -101,11 +106,17 @@ class TableSecondController: UITableViewController {
             
             return cell
     }
+    //узнать текущую директорию где храняться данные
+   /* func documentDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)
+        return paths[0]
+    } */
+    
+    func saveCheckItem() {
+        UserDefaults.standard.set(arrayData, forKey: "dt_txt")
+        UserDefaults.standard.set(arrayTemperature, forKey: "tempSomeDay")
+        UserDefaults.standard.synchronize()
+    }
     
 }
-/*
-extension TableSecondController: DelegateSecond {
-    func touchInSecondView(_ view: TableViewController) {
-        
-    }
-}*/
+
