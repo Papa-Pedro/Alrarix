@@ -23,4 +23,11 @@ struct Main: Codable {
         case min = "temp_min"
         case max = "temp_max"
     }
+    
+  /*  init?(coder aDecoder: NSCoder) {
+        self.temp = aDecoder.decodeObject(forKey: "temp") as! Double
+        self.feels = aDecoder.decodeObject(forKey: "feels_like") as! Double
+        self.min = aDecoder.decodeObject(forKey: "temp_min") as! Double
+        self.max = aDecoder.decodeObject(forKey: "temp_max") as! Double
+    }*/
 }

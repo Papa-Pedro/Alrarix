@@ -9,7 +9,10 @@ class TableSecondController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(nameSity)
+    //    if UserDefaults.standardUse
+        
+        
+        
         self.navigationItem.title = "Погода на 5 дней в \(nameSity)"
         //вынимаем данные с сервера
         APIServices().getObjectSomeDay(city: nameSity) {
