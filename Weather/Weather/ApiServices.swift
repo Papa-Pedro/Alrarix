@@ -11,7 +11,7 @@ final public class APIServices {
 
     
     public func getObjectToday<T: Codable>(
-        city: String,
+        _ city: String,
         handler: @escaping (_ object: T?, _ error: Error?) -> Void) {
 
         let resultURL = domin+city+tail

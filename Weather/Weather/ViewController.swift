@@ -16,48 +16,17 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(UserDefaults.standard.double(forKey: "temp"))
-        if UserDefaults.standard.double(forKey: "temp") != 0.0 {
-            temp = UserDefaults.standard.double(forKey: "temp")
-        }
-        if UserDefaults.standard.double(forKey: "feels") != 0.0 {
-            feels = UserDefaults.standard.double(forKey: "feels")
-        }
-        if UserDefaults.standard.double(forKey: "temp_min") != 0.0 {
-            tempMin = UserDefaults.standard.double(forKey: "temp_min")
-        }
-       if UserDefaults.standard.double(forKey: "temp_max") != 0.0 {
-            tempMax = UserDefaults.standard.double(forKey: "temp_max")
-        }
-        if UserDefaults.standard.string(forKey: "name") != nil {
-            name = UserDefaults.standard.string(forKey: "name")!
-        }
-        
         self.navigationItem.title = "Погода"
-    
-        APIServices().getObjectToday(city: name) {
-            [weak self] (result: WeatherData?, error: Error?) in
-            if let error = error {
-                print("Error 1 start")
-                print("\(error)")
-                print("Error 1 finish")
-            } else if let result = result {
-                self?.update(from: result)
-            }
-        }
+        
+        temp = pullDataCollection("temp")
+        feels = pullDataCollection("feels")
+        tempMax = pullDataCollection("temp_max")
+        tempMin = pullDataCollection("temp_min")
+        name = pullDataCollection("name")
+        
+        callAPIService(city: name)
     }
     
-    private func update(from result: WeatherData) {
-        name = result.name
-        feels = result.main.feels
-        temp = result.main.temp
-        tempMin = result.main.min
-        tempMax = result.main.max
-        saveCheckItems()
-        tableView.reloadData()
-    }
-
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
@@ -71,7 +40,6 @@ class TableViewController: UITableViewController {
             cell.temperatureLabel.text = String("\(Int(temp - 273.15))º")
             cell.feltLabel.text = String("\(Int(tempMin - 273.15))º/\(Int(tempMax - 273.15))º Ощущается как \(Int(feels - 273.15))º")
             cell.nameLabel.text = name
-            
             
             return cell
         } else {
@@ -89,8 +57,18 @@ class TableViewController: UITableViewController {
             return 93
         }
     }
-    
-    func saveCheckItems() {
+    //обновляем данные
+    private func update(from result: WeatherData) {
+        name = result.name
+        feels = result.main.feels
+        temp = result.main.temp
+        tempMin = result.main.min
+        tempMax = result.main.max
+        saveCheckItems()
+        tableView.reloadData()
+    }
+    //cохраняем данные в DataStorage
+    private func saveCheckItems() {
         UserDefaults.standard.set(temp, forKey: "temp")
         UserDefaults.standard.set(feels, forKey: "feels")
         UserDefaults.standard.set(tempMax, forKey: "temp_max")
@@ -98,6 +76,33 @@ class TableViewController: UITableViewController {
         UserDefaults.standard.set(name, forKey: "name")
         UserDefaults.standard.synchronize()
     }
+    //получаем информацию из DataStorage
+    private func pullDataCollection(_ key: String) -> Double {
+        if UserDefaults.standard.double(forKey: key) != 0.0 {
+            return UserDefaults.standard.double(forKey: key)
+        }
+        return 0.0
+    }
+    
+    private func pullDataCollection(_ key: String) -> String {
+        if UserDefaults.standard.string(forKey: key) != "" {
+            return UserDefaults.standard.string(forKey: key)!
+        }
+        return ""
+    }
+    
+    func callAPIService(city: String) {
+        APIServices().getObjectToday(city) {
+            [weak self] (result: WeatherData?, error: Error?) in
+            if let error = error {
+                print("Error - \(error)")
+            } else if let result = result {
+                self?.update(from: result)
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
 }
 
 extension TableViewController: Delegate {
@@ -105,18 +110,7 @@ extension TableViewController: Delegate {
         let newText = (view.nameCityField.text ?? "")
         view.nameLabel.text = newText
         let nameOfLabel = newText //получаем значение label из Xib.row = 0
-        APIServices().getObjectToday(city: nameOfLabel) {
-            [weak self] (result: WeatherData?, error: Error?) in
-            if let error = error {
-                print("no1")
-                print("\(error)")
-                print("no")
-            } else if let result = result {
-                self?.update(from: result)
-                self?.tableView.reloadData()
-            }
-        }
-    }
+        callAPIService(city: nameOfLabel)    }
 }
 //вызов делегата 2 ячейки
 extension TableViewController: DayDelegate {
