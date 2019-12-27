@@ -16,6 +16,7 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(UserDefaults.standard.double(forKey: "temp"))
         if UserDefaults.standard.double(forKey: "temp") != 0.0 {
             temp = UserDefaults.standard.double(forKey: "temp")
              print("temp! = \(String(describing: temp))")
@@ -100,6 +101,7 @@ class TableViewController: UITableViewController {
         UserDefaults.standard.set(tempMax, forKey: "temp_max")
         UserDefaults.standard.set(tempMin, forKey: "temp_min")
         UserDefaults.standard.set(name, forKey: "name")
+        UserDefaults.standard.synchronize()
     }
 }
 

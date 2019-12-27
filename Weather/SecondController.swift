@@ -2,16 +2,28 @@ import UIKit
 
 class TableSecondController: UITableViewController {
     //массив с получеными температурами
-    var arrayTemperature = [Double] (repeating: 0.0, count: 40)
-    var arrayData = [String] (repeating: "", count: 5)
+    var arrayTemperature = [Double] (repeating: 0.0, count: 40) //погода
+    var arrayData = [String] (repeating: "", count: 5) //день
     //для переданного текста
     var nameSity = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    //    if UserDefaults.standardUse
-        
-        
+        print(UserDefaults.standard.array(forKey: "dt_txt"))
+        if UserDefaults.standard.array(forKey: "dt_txt") != nil {
+            arrayData.removeAll()
+            arrayData = (UserDefaults.standard.array(forKey: "dt_txt") as? [String])!
+            print(arrayData)
+        }
+        print("??"+"\(UserDefaults.standard.array(forKey: "temp"))")
+        if UserDefaults.standard.array(forKey: "temp") != nil {
+            let a: [String?] = (UserDefaults.standard.array(forKey: "temp") as? [String])!
+            print(a)
+            var array2: [Double] = []
+            //for number in a {
+            //    let ar = Double(number!)
+             //   arrayTemperature.append(ar!)
+        }
         
         self.navigationItem.title = "Погода на 5 дней в \(nameSity)"
         //вынимаем данные с сервера
@@ -39,6 +51,8 @@ class TableSecondController: UITableViewController {
         }
         arrayTemperature.append(result.list[index].main.temp)
         }
+        //print(arrayTemperature)
+        saveCheckItem()
         tableView.reloadData()
     }
     
@@ -102,6 +116,13 @@ class TableSecondController: UITableViewController {
             cell.tempLabel5.text = String("\(Int(arrayTemperature[39] - 273.15))º")
             
             return cell
+    }
+    
+    func saveCheckItem() {
+        UserDefaults.standard.set(arrayData, forKey: "dt_txt")
+        print("temp!)@" + "\(arrayTemperature)")
+        UserDefaults.standard.set(arrayTemperature, forKey: "temp")
+        UserDefaults.standard.synchronize()
     }
     
 }
