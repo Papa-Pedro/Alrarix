@@ -40,7 +40,6 @@ class TableViewController: UITableViewController {
             
             return cell
         } else {
-            //let cell = tableView.dequeueReusableCell(withIdentifier: "DayTableViewCell") as! DayTableViewCell
             let cell = Bundle.main.loadNibNamed("DayTableViewCell", owner: self, options: nil)?.first as! DayTableViewCell
             cell.delegate = self
             
@@ -119,7 +118,6 @@ extension TableViewController: DayDelegate {
         //создаем TableSecondViewController
         let nextTableViewController = mainStoryboard.instantiateViewController(withIdentifier: "nextView") as! TableSecondController
         //меняем его свойство
-        print("!!!!" + infoToday.name)
         nextTableViewController.fewDayData.nameCity = infoToday.name
         UIApplication.shared.isIdleTimerDisabled = false
         //кладем Second наверх стека и вызываем его, те другой VC

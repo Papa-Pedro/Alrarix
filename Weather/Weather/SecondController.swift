@@ -65,70 +65,32 @@ class TableSecondController: UITableViewController {
             cell.tempLabel5.text = ""
             return cell
         } else {
-            if indexPath.row == 0{
-                let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
-                cell.DataLabel.text = fewDayData.arrayDate[indexPath.row]//String()
-                cell.tempLabel1.text = String("\(Int(fewDayData.arrayTemperature[0] - 273.15))º")
-                cell.temaLabel2.text = String("\(Int(fewDayData.arrayTemperature[2] - 273.15))º")
-                cell.tempLabel3.text = String("\(Int(fewDayData.arrayTemperature[4] - 273.15))º")
-                cell.tempLabel4.text = String("\(Int(fewDayData.arrayTemperature[6] - 273.15))º")
-                cell.tempLabel5.text = String("\(Int(fewDayData.arrayTemperature[7] - 273.15))º")
-                
-                return cell
+            var arrayIndex = [Double]()
+            for counterRow in 0...4 {
+                if indexPath.row == counterRow{
+                    arrayIndex = countIndex(row: indexPath.row, arrayInfoDay: fewDayData.arrayTemperature)
+                    let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
+                    cell.DataLabel.text = fewDayData.arrayDate[indexPath.row]//String()
+                    cell.tempLabel1.text = String("\(Int(arrayIndex[0] - 273.15))º")
+                    cell.temaLabel2.text = String("\(Int(arrayIndex[1] - 273.15))º")
+                    cell.tempLabel3.text = String("\(Int(arrayIndex[2] - 273.15))º")
+                    cell.tempLabel4.text = String("\(Int(arrayIndex[3] - 273.15))º")
+                    cell.tempLabel5.text = String("\(Int(arrayIndex[4] - 273.15))º")
+                    return cell
+                }
             }
-            if indexPath.row == 1{
-                let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
-                cell.DataLabel.text = fewDayData.arrayDate[indexPath.row]
-                cell.tempLabel1.text = String("\(Int(fewDayData.arrayTemperature[8] - 273.15))º")
-                cell.temaLabel2.text = String("\(Int(fewDayData.arrayTemperature[10] - 273.15))º")
-                cell.tempLabel3.text = String("\(Int(fewDayData.arrayTemperature[12] - 273.15))º")
-                cell.tempLabel4.text = String("\(Int(fewDayData.arrayTemperature[14] - 273.15))º")
-                cell.tempLabel5.text = String("\(Int(fewDayData.arrayTemperature[15] - 273.15))º")
-                
-                return cell
-            }
-            if indexPath.row == 2{
-                let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
-                cell.DataLabel.text = fewDayData.arrayDate[indexPath.row]
-                cell.tempLabel1.text = String("\(Int(fewDayData.arrayTemperature[16] - 273.15))º")
-                cell.temaLabel2.text = String("\(Int(fewDayData.arrayTemperature[18] - 273.15))º")
-                cell.tempLabel3.text = String("\(Int(fewDayData.arrayTemperature[20] - 273.15))º")
-                cell.tempLabel4.text = String("\(Int(fewDayData.arrayTemperature[22] - 273.15))º")
-                cell.tempLabel5.text = String("\(Int(fewDayData.arrayTemperature[23] - 273.15))º")
-                
-                return cell
-            }
-            if indexPath.row == 3{
-                let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
-                cell.DataLabel.text = fewDayData.arrayDate[indexPath.row]
-                cell.tempLabel1.text = String("\(Int(fewDayData.arrayTemperature[24] - 273.15))º")
-                cell.temaLabel2.text = String("\(Int(fewDayData.arrayTemperature[26] - 273.15))º")
-                cell.tempLabel3.text = String("\(Int(fewDayData.arrayTemperature[28] - 273.15))º")
-                cell.tempLabel4.text = String("\(Int(fewDayData.arrayTemperature[30] - 273.15))º")
-                cell.tempLabel5.text = String("\(Int(fewDayData.arrayTemperature[31] - 273.15))º")
-                
-                return cell
-            }
-            let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
-            cell.DataLabel.text = fewDayData.arrayDate[indexPath.row]
-            cell.tempLabel1.text = String("\(Int(fewDayData.arrayTemperature[32] - 273.15))º")
-            cell.temaLabel2.text = String("\(Int(fewDayData.arrayTemperature[34] - 273.15))º")
-            cell.tempLabel3.text = String("\(Int(fewDayData.arrayTemperature[36] - 273.15))º")
-            cell.tempLabel4.text = String("\(Int(fewDayData.arrayTemperature[38] - 273.15))º")
-            cell.tempLabel5.text = String("\(Int(fewDayData.arrayTemperature[39] - 273.15))º")
-            
-            return cell
-            
+            return Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
         }
-        
-        
     }
-
-    //узнать текущую директорию где храняться данные
-   /* func documentDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)
-        return paths[0]
-    } */
+    
+    func countIndex(row: Int, arrayInfoDay: [Double]) -> [Double] {
+        var arrayData: [Double] = []
+        for counter in 0...3 {
+            arrayData.append(arrayInfoDay[8 * row + 2 * counter])
+        }
+        arrayData.append(arrayInfoDay[8 * row + 7])
+        return arrayData
+    }
     
     func saveCheckItem() {
         UserDefaults.standard.set(fewDayData.arrayDate, forKey: "dt_txt")

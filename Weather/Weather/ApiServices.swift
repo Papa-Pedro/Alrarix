@@ -35,7 +35,6 @@ final public class APIServices {
         handler: @escaping (_ object: T?, _ error: Error?) -> Void) {
         
         let resultURL = dominSomeDay + city + tail
-        //print(resultURL)
         
         request(resultURL).responseData() { response in
             response.result.withValue { data in
