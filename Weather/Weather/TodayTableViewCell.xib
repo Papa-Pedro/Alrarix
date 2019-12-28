@@ -48,6 +48,9 @@
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <action selector="nameCityActionField:" destination="KGk-i7-Jjw" eventType="editingDidBegin" id="JIj-4v-EiR"/>
+                        </connections>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJJ-aS-Yf5">
                         <rect key="frame" x="104" y="126" width="46" height="30"/>
@@ -87,11 +90,11 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="feltLabel" destination="go0-F7-rzk" id="eyO-9I-pDr"/>
-                <outlet property="nameCityField" destination="1uv-My-5ES" id="0da-Fv-Po1"/>
+                <outlet property="nameCityField" destination="1uv-My-5ES" id="Bc3-0b-lTu"/>
                 <outlet property="nameLabel" destination="kid-kG-oqC" id="iwi-lQ-zjg"/>
                 <outlet property="temperatureLabel" destination="AZE-al-X3o" id="dXh-Wg-8VH"/>
             </connections>
-            <point key="canvasLocation" x="-36" y="34.632683658170919"/>
+            <point key="canvasLocation" x="54" y="33"/>
         </tableViewCell>
     </objects>
 </document>

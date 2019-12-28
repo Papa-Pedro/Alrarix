@@ -8,6 +8,13 @@ struct InfoToday {
     var name: String = pullDataCollection("name")
 }
 
+/*struct Pull: Comparable {
+    static func < (lhs: Pull, rhs: Pull) -> Bool {
+        <#code#>
+    }
+
+}*/
+
 class TableViewController: UITableViewController {
     
     var infoToday = InfoToday()
@@ -26,10 +33,17 @@ class TableViewController: UITableViewController {
         if indexPath.row == 0 {
             
             let cell = Bundle.main.loadNibNamed("TodayTableViewCell", owner: self, options: nil)?.first as! TodayTableViewCell
-            cell.delegate = self //вызываем делегат и получаем все его свойства теперь будет вызван extension
-            cell.temperatureLabel.text = String("\(Int(infoToday.temp - 273.15))º")
-            cell.feltLabel.text = String("\(Int(infoToday.tempMin - 273.15))º/\(Int(infoToday.tempMax - 273.15))º feels like \(Int(infoToday.feels - 273.15))º")
-            cell.nameLabel.text = infoToday.name
+                cell.delegate = self //вызываем делегат и получаем все его свойства теперь будет вызван extension
+            if infoToday.name == "" {
+                cell.temperatureLabel.text = String("")
+                cell.feltLabel.text = String("Check your internet connection")
+                cell.nameLabel.text = infoToday.name
+            } else {
+                //cell.delegate = self //вызываем делегат и получаем все его свойства теперь будет вызван extension
+                cell.temperatureLabel.text = String("\(Int(infoToday.temp - 273.15))º")
+                cell.feltLabel.text = String("\(Int(infoToday.tempMin - 273.15))º/\(Int(infoToday.tempMax - 273.15))º feels like \(Int(infoToday.feels - 273.15))º")
+                cell.nameLabel.text = infoToday.name
+            }
             
             return cell
         } else {
@@ -94,6 +108,21 @@ func pullDataCollection(_ key: String) -> String {
     }
     return ""
 }
+
+//func pullDataCollection<T: Comparable>(_ key: String, _ variable: T.self) -> T {
+   // if let anyString: [String] = variable as! [String] {
+    //    if UserDefaults.standard.string(forKey: key) != nil {
+    //        return UserDefaults.standard.string(forKey: key)!
+     //   }
+     //   return ""
+   // }
+    //return UserDefaults.standard.string(forKey: key)!
+ //   if variable = String {
+ //   } else {
+        
+  //  }
+    
+//}
 
 
 extension TableViewController: Delegate {
