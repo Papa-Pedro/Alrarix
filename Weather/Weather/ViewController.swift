@@ -15,6 +15,8 @@ class TableViewController: UITableViewController {
         UIApplication.shared.isIdleTimerDisabled = true
         super.viewDidLoad()
         self.navigationItem.title = "Weather"
+        tableView.register(UINib(nibName: "TodayTableViewCell", bundle: nil), forCellReuseIdentifier: "TodayTableViewCell")
+        //tableView.register(TodayTableViewCell.self, forCellReuseIdentifier: "TodayTableViewCell")
         callAPIService(city: infoToday.name)
     }
     
@@ -23,9 +25,8 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.row == 0 {
-            let cell = Bundle.main.loadNibNamed("TodayTableViewCell", owner: self, options: nil)?.first as! TodayTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TodayTableViewCell", for: indexPath) as! TodayTableViewCell
             cell.delegate = self //получаем делегат
             if infoToday.name == "" {
                 cell.temperatureLabel.text = String("")
@@ -75,7 +76,7 @@ class TableViewController: UITableViewController {
     }
 
     func callAPIService(city: String) {
-        APIServices().getObjectToday(city) {
+        WeatherService().getObjectToday(city: city) {
             [weak self] (result: WeatherData?, error: Error?) in
             if let error = error {
                 print("Error - \(error)")

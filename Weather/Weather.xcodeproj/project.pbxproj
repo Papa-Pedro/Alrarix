@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B90AD9B323B7BF66006A7A03 /* WeatherServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90AD9B223B7BF66006A7A03 /* WeatherServices.swift */; };
 		B90E11FA23B15C370088824F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90E11F923B15C370088824F /* AppDelegate.swift */; };
 		B90E11FC23B15C370088824F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90E11FB23B15C370088824F /* ViewController.swift */; };
 		B90E11FF23B15C370088824F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B90E11FD23B15C370088824F /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		394D2254B0F99BDD055CA7ED /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
 		3DD87C176B1CCBA4803A5CA9 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
+		B90AD9B223B7BF66006A7A03 /* WeatherServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServices.swift; sourceTree = "<group>"; };
 		B90E11F623B15C370088824F /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90E11F923B15C370088824F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B90E11FB23B15C370088824F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				B90E120B23B15DD00088824F /* TodayTableViewCell.swift */,
 				B90E120C23B15DD00088824F /* TodayTableViewCell.xib */,
 				B90E121323B171A90088824F /* ApiServices.swift */,
+				B90AD9B223B7BF66006A7A03 /* WeatherServices.swift */,
 				B90E121523B1775A0088824F /* WeatherData.swift */,
 				B92BA80023B424AA00559A8D /* WeatherSomeData.swift */,
 				B90E120223B15C390088824F /* LaunchScreen.storyboard */,
@@ -242,6 +245,7 @@
 				B90E121123B15F020088824F /* DayTableViewCell.swift in Sources */,
 				B90E11FA23B15C370088824F /* AppDelegate.swift in Sources */,
 				B90E121623B1775A0088824F /* WeatherData.swift in Sources */,
+				B90AD9B323B7BF66006A7A03 /* WeatherServices.swift in Sources */,
 				B92BA80123B424AA00559A8D /* WeatherSomeData.swift in Sources */,
 				B90E121423B171A90088824F /* ApiServices.swift in Sources */,
 				B92BA80A23B447C500559A8D /* SomeDayCell.swift in Sources */,

@@ -20,7 +20,7 @@ class TableSecondController: UITableViewController {
             fewDayData.arrayTemperature = UserDefaults.standard.array(forKey: "tempSomeDay") as? [Double] ?? [0.0]
         }
         //вынимаем данные с сервера
-        APIServices().getObjectSomeDay(city: fewDayData.nameCity) {
+        WeatherService().getObjectSomeDay(city: fewDayData.nameCity) {
             [weak self] (result: WeatherSomeDay?, error: Error?) in
             if let error = error {
                 print("no")
@@ -53,7 +53,7 @@ class TableSecondController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {//
-        
+        tableView.dequeueReusableCell(withIdentifier: "SomeDayCell")
         if fewDayData.nameCity == "" {
             self.navigationItem.title = "Check your internet connection"
             let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
