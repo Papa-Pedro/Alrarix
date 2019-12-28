@@ -21,7 +21,7 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71E-96-Uwj">
                         <rect key="frame" x="0.0" y="0.0" width="370" height="92.5"/>
-                        <state key="normal" title="Узнать погоду на несколько дней"/>
+                        <state key="normal" title="Find out the weather in a few days"/>
                         <connections>
                             <action selector="goNextNewButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="aZ3-sM-h78"/>
                         </connections>

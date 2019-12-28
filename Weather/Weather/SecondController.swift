@@ -15,6 +15,7 @@ class TableSecondController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Weather for 5 days in \(fewDayData.nameCity)"
         if UserDefaults.standard.array(forKey: "dt_txt") != nil {
             fewDayData.arrayDate.removeAll()
             fewDayData.arrayDate = (UserDefaults.standard.array(forKey: "dt_txt") as? [String])!
@@ -22,8 +23,6 @@ class TableSecondController: UITableViewController {
         if UserDefaults.standard.array(forKey: "tempSomeDay") != nil {
             fewDayData.arrayTemperature = UserDefaults.standard.array(forKey: "tempSomeDay") as? [Double] ?? [0.0]
         }
-        
-        self.navigationItem.title = "Погода на 5 дней в \(fewDayData.nameCity)"
         //вынимаем данные с сервера
         APIServices().getObjectSomeDay(city: fewDayData.nameCity) {
             [weak self] (result: WeatherSomeDay?, error: Error?) in

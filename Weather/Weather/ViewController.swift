@@ -13,7 +13,7 @@ class TableViewController: UITableViewController {
     var infoToday = InfoToday()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Погода" 
+        self.navigationItem.title = "Weather" 
         callAPIService(city: infoToday.name)
     }
     
@@ -25,10 +25,10 @@ class TableViewController: UITableViewController {
         
         if indexPath.row == 0 {
             
-            let cell = Bundle.main.loadNibNamed("TodayViewCellTableViewCell", owner: self, options: nil)?.first as! TodayViewCellTableViewCell
+            let cell = Bundle.main.loadNibNamed("TodayTableViewCell", owner: self, options: nil)?.first as! TodayTableViewCell
             cell.delegate = self //вызываем делегат и получаем все его свойства теперь будет вызван extension
             cell.temperatureLabel.text = String("\(Int(infoToday.temp - 273.15))º")
-            cell.feltLabel.text = String("\(Int(infoToday.tempMin - 273.15))º/\(Int(infoToday.tempMax - 273.15))º Ощущается как \(Int(infoToday.feels - 273.15))º")
+            cell.feltLabel.text = String("\(Int(infoToday.tempMin - 273.15))º/\(Int(infoToday.tempMax - 273.15))º feels like \(Int(infoToday.feels - 273.15))º")
             cell.nameLabel.text = infoToday.name
             
             return cell
@@ -97,7 +97,7 @@ func pullDataCollection(_ key: String) -> String {
 
 
 extension TableViewController: Delegate {
-    func touchInView(_ view: TodayViewCellTableViewCell) {
+    func touchInView(_ view: TodayTableViewCell) {
         let newText = (view.nameCityField.text ?? "")
         view.nameLabel.text = newText
         let nameOfLabel = newText //получаем значение label из Xib.row = 0
