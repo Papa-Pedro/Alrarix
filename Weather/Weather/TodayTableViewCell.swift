@@ -7,10 +7,6 @@ protocol Delegate: class {
 class TodayTableViewCell: UITableViewCell {
     weak var delegate: Delegate?
     
-    //@IBAction func nameCityField(_ sender: UITextField) {
-    //    sender.text = ""
-    //}
-    
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var feltLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -19,9 +15,6 @@ class TodayTableViewCell: UITableViewCell {
         sender.text = ""
     }
     @IBAction func nameCityButton(_ sender: UIButton) {
-        //sender.layer.cornerRadius = 5.0
-        //sender.alpha = 0.0
-       // nameCityField.layer.cornerRadius = 5
         delegate?.touchInView(self)
     }
     

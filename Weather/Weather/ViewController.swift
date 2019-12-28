@@ -1,26 +1,19 @@
 import UIKit
 
 struct InfoToday {
-    var temp: Double = pullDataCollection("temp")
-    var feels: Double = pullDataCollection("feels")
-    var tempMax: Double = pullDataCollection("temp_max")
-    var tempMin: Double = pullDataCollection("temp_min")
-    var name: String = pullDataCollection("name")
+    var temp: Double = pullDataCollection("temp", 0.0)
+    var feels: Double = pullDataCollection("feels", 0.0)
+    var tempMax: Double = pullDataCollection("temp_max", 0.0)
+    var tempMin: Double = pullDataCollection("temp_min", 0.0)
+    var name: String = pullDataCollection("name", "")
 }
-
-/*struct Pull: Comparable {
-    static func < (lhs: Pull, rhs: Pull) -> Bool {
-        <#code#>
-    }
-
-}*/
 
 class TableViewController: UITableViewController {
     
     var infoToday = InfoToday()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Weather" 
+        self.navigationItem.title = "Weather"
         callAPIService(city: infoToday.name)
     }
     
@@ -31,9 +24,8 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            
             let cell = Bundle.main.loadNibNamed("TodayTableViewCell", owner: self, options: nil)?.first as! TodayTableViewCell
-                cell.delegate = self //вызываем делегат и получаем все его свойства теперь будет вызван extension
+            cell.delegate = self //получаем делегат
             if infoToday.name == "" {
                 cell.temperatureLabel.text = String("")
                 cell.feltLabel.text = String("Check your internet connection")
@@ -47,6 +39,7 @@ class TableViewController: UITableViewController {
             
             return cell
         } else {
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "DayTableViewCell") as! DayTableViewCell
             let cell = Bundle.main.loadNibNamed("DayTableViewCell", owner: self, options: nil)?.first as! DayTableViewCell
             cell.delegate = self
             
@@ -94,35 +87,20 @@ class TableViewController: UITableViewController {
     }
     
 }
-//получаем информацию из DataStorage
-func pullDataCollection(_ key: String) -> Double {
-    if UserDefaults.standard.double(forKey: key) != 0.0 {
-        return UserDefaults.standard.double(forKey: key)
+//получаем информацию из хранилища
+func pullDataCollection<T: Comparable>(_ key: String, _ variable: T) -> T {
+    if let _: Double = variable as? Double {
+        if UserDefaults.standard.double(forKey: key) != 0.0 {
+            return UserDefaults.standard.double(forKey: key) as! T
+        }
+        return 0.0 as! T
+    } else {
+        if UserDefaults.standard.string(forKey: key) != nil {
+            return UserDefaults.standard.string(forKey: key) as! T
+        }
+        return "" as! T
     }
-    return 0.0
 }
-
-func pullDataCollection(_ key: String) -> String {
-    if UserDefaults.standard.string(forKey: key) != nil {
-        return UserDefaults.standard.string(forKey: key)!
-    }
-    return ""
-}
-
-//func pullDataCollection<T: Comparable>(_ key: String, _ variable: T.self) -> T {
-   // if let anyString: [String] = variable as! [String] {
-    //    if UserDefaults.standard.string(forKey: key) != nil {
-    //        return UserDefaults.standard.string(forKey: key)!
-     //   }
-     //   return ""
-   // }
-    //return UserDefaults.standard.string(forKey: key)!
- //   if variable = String {
- //   } else {
-        
-  //  }
-    
-//}
 
 
 extension TableViewController: Delegate {

@@ -58,11 +58,11 @@ class TableSecondController: UITableViewController {
             self.navigationItem.title = "Check your internet connection"
             let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
             cell.DataLabel.text = "No data"
-            cell.tempLabel1.text = String("")
-            cell.temaLabel2.text = String("")
-            cell.tempLabel3.text = String("")
-            cell.tempLabel4.text = String("")
-            cell.tempLabel5.text = String("")
+            cell.tempLabel1.text = ""
+            cell.temaLabel2.text = ""
+            cell.tempLabel3.text = ""
+            cell.tempLabel4.text = ""
+            cell.tempLabel5.text = ""
             return cell
         } else {
             if indexPath.row == 0{
