@@ -12,6 +12,7 @@ class TableViewController: UITableViewController {
     
     var infoToday = InfoToday()
     override func viewDidLoad() {
+        UIApplication.shared.isIdleTimerDisabled = true
         super.viewDidLoad()
         self.navigationItem.title = "Weather"
         callAPIService(city: infoToday.name)
@@ -120,6 +121,7 @@ extension TableViewController: DayDelegate {
         //меняем его свойство
         print("!!!!" + infoToday.name)
         nextTableViewController.fewDayData.nameCity = infoToday.name
+        UIApplication.shared.isIdleTimerDisabled = false
         //кладем Second наверх стека и вызываем его, те другой VC
         self.navigationController?.pushViewController(nextTableViewController, animated: true)
     }
