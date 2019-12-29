@@ -6,6 +6,7 @@ struct InfoToday {
     var tempMax: Double = pullDataCollection("temp_max", 0.0)
     var tempMin: Double = pullDataCollection("temp_min", 0.0)
     var name: String = pullDataCollection("name", "")
+    var weatherDescription = pullDataCollection("description", "")
 }
 
 class TableViewController: UITableViewController {
@@ -16,7 +17,6 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Weather"
         tableView.register(UINib(nibName: "TodayTableViewCell", bundle: nil), forCellReuseIdentifier: "TodayTableViewCell")
-        //tableView.register(TodayTableViewCell.self, forCellReuseIdentifier: "TodayTableViewCell")
         callAPIService(city: infoToday.name)
     }
     
@@ -28,6 +28,14 @@ class TableViewController: UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TodayTableViewCell", for: indexPath) as! TodayTableViewCell
             cell.delegate = self //получаем делегат
+            //работа с IMG, cоздаем отдельный потом для загрузки картинки, так же мы решим проблему с размером без большого кода
+            DispatchQueue.main.async {
+                if let url = URL(string: WeatherCondition(self.infoToday.weatherDescription).rawValue) {
+                    if let imgData = try? Data(contentsOf: url) {
+                        cell.cloudsImageView.image = UIImage(data: imgData)
+                    }
+                }
+            }
             if infoToday.name == "" {
                 cell.temperatureLabel.text = String("")
                 cell.feltLabel.text = String("Check your internet connection")
@@ -35,7 +43,7 @@ class TableViewController: UITableViewController {
             } else {
                 //cell.delegate = self //вызываем делегат и получаем все его свойства теперь будет вызван extension
                 cell.temperatureLabel.text = String("\(Int(infoToday.temp - 273.15))º")
-                cell.feltLabel.text = String("\(Int(infoToday.tempMin - 273.15))º/\(Int(infoToday.tempMax - 273.15))º feels like \(Int(infoToday.feels - 273.15))º")
+                cell.feltLabel.text = String("\(Int(infoToday.tempMin - 273.15))º...\(Int(infoToday.tempMax - 273.15))º feels like \(Int(infoToday.feels - 273.15))º")
                 cell.nameLabel.text = infoToday.name
             }
             
@@ -62,6 +70,8 @@ class TableViewController: UITableViewController {
         infoToday.temp = result.main.temp
         infoToday.tempMin = result.main.min
         infoToday.tempMax = result.main.max
+        infoToday.weatherDescription = result.picture[0].description
+        //print(infoToday.weatherDescription)
         saveCheckItems()
         tableView.reloadData()
     }
@@ -81,6 +91,7 @@ class TableViewController: UITableViewController {
             if let error = error {
                 print("Error - \(error)")
             } else if let result = result {
+                //print(result)
                 self?.update(from: result)
                 self?.tableView.reloadData()
             }

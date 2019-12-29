@@ -7,6 +7,8 @@ protocol Delegate: class {
 class TodayTableViewCell: UITableViewCell {
     weak var delegate: Delegate?
     
+    
+    @IBOutlet weak var cloudsImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var feltLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!

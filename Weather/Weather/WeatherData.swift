@@ -2,10 +2,13 @@ import UIKit
 
 struct WeatherData: Codable {
     let main: Main
+    let picture: [Picture]
     let name: String
+
     
     enum CodingKeys: String, CodingKey {
         case main = "main"
+        case picture = "weather"
         case name = "name"
     }
 }
@@ -23,3 +26,12 @@ struct Main: Codable {
         case max = "temp_max"
     }
 }
+
+struct Picture: Codable {
+    let description: String
+    
+    enum CodingKeys: String, CodingKey {
+        case description = "description"
+    }
+}
+
