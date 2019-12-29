@@ -103,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				B90E11FB23B15C370088824F /* ViewController.swift */,
-				B94F10E123B894270043E1B5 /* ImageTodayData.swift */,
 				B927545B23B3E00500E180CA /* SecondController.swift */,
 				B90E11FD23B15C370088824F /* Main.storyboard */,
 				B90E120B23B15DD00088824F /* TodayTableViewCell.swift */,
@@ -116,6 +115,7 @@
 				B90AD9B223B7BF66006A7A03 /* WeatherServices.swift */,
 				B90E121523B1775A0088824F /* WeatherData.swift */,
 				B92BA80023B424AA00559A8D /* WeatherSomeData.swift */,
+				B94F10E123B894270043E1B5 /* ImageTodayData.swift */,
 				B90E120223B15C390088824F /* LaunchScreen.storyboard */,
 				B90E11F923B15C370088824F /* AppDelegate.swift */,
 				B90E120023B15C390088824F /* Assets.xcassets */,

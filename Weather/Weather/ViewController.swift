@@ -13,7 +13,6 @@ class TableViewController: UITableViewController {
     
     var infoToday = InfoToday()
     override func viewDidLoad() {
-        UIApplication.shared.isIdleTimerDisabled = true
         super.viewDidLoad()
         self.navigationItem.title = "Weather"
         tableView.register(UINib(nibName: "TodayTableViewCell", bundle: nil), forCellReuseIdentifier: "TodayTableViewCell")
@@ -41,7 +40,6 @@ class TableViewController: UITableViewController {
                 cell.feltLabel.text = String("Check your internet connection")
                 cell.nameLabel.text = infoToday.name
             } else {
-                //cell.delegate = self //вызываем делегат и получаем все его свойства теперь будет вызван extension
                 cell.temperatureLabel.text = String("\(Int(infoToday.temp - 273.15))º")
                 cell.feltLabel.text = String("\(Int(infoToday.tempMin - 273.15))º...\(Int(infoToday.tempMax - 273.15))º feels like \(Int(infoToday.feels - 273.15))º")
                 cell.nameLabel.text = infoToday.name
@@ -71,7 +69,6 @@ class TableViewController: UITableViewController {
         infoToday.tempMin = result.main.min
         infoToday.tempMax = result.main.max
         infoToday.weatherDescription = result.picture[0].description
-        //print(infoToday.weatherDescription)
         saveCheckItems()
         tableView.reloadData()
     }
@@ -131,7 +128,6 @@ extension TableViewController: DayDelegate {
         let nextTableViewController = mainStoryboard.instantiateViewController(withIdentifier: "nextView") as! TableSecondController
         //меняем его свойство
         nextTableViewController.fewDayData.nameCity = infoToday.name
-        UIApplication.shared.isIdleTimerDisabled = false
         //кладем Second наверх стека и вызываем его, те другой VC
         self.navigationController?.pushViewController(nextTableViewController, animated: true)
     }

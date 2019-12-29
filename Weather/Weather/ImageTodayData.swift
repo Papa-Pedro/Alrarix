@@ -12,16 +12,17 @@ enum WeatherCondition: String {
     case Mist = "https://openweathermap.org/img/wn/50d@2x.png"
     
     init(_ image: String) {
-        print(image)
         switch image {
         case "clear sky": self = .Clear
         case "few clouds": self = .Few
         case "scattered clouds": self = .Scattered
         case "overcast clouds": self = .Broken
+        case "broken clouds": self = .Broken
         case "shower rain": self = .Shower
         case "light rain": self = .Rain
         case "thunderstorm": self = .Thunderstorm
         case "light snow": self = .Show
+        case "snow": self = .Show
         case _: self = .Mist
         }
     }
