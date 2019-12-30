@@ -3,7 +3,9 @@ import UIKit
 class SomeDayCell: UITableViewCell {
 
     @IBOutlet weak var DataLabel: UILabel!
+    
     @IBOutlet weak var cloudZeroImage: UIImageView!
+    //@IBOutlet weak var cloudZeroImage: UIImageView!
     @IBOutlet weak var cloudSixImage: UIImageView!
     @IBOutlet weak var cloudTwelveImage: UIImageView!
     @IBOutlet weak var cloudEighteenImage: UIImageView!

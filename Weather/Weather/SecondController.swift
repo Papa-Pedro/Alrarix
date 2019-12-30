@@ -13,9 +13,7 @@ class TableSecondController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Weather for 5 days in \(fewDayData.nameCity)"
-        
         if UserDefaults.standard.array(forKey: "dt_txt") != nil {
-            fewDayData.arrayDate.removeAll()
             fewDayData.arrayDate = (UserDefaults.standard.array(forKey: "dt_txt") as? [String])!
         }
         if UserDefaults.standard.array(forKey: "tempSomeDay") != nil {
@@ -48,6 +46,7 @@ class TableSecondController: UITableViewController {
         }
         saveCheckItem()
         tableView.reloadData()
+
     }
     
     
@@ -56,8 +55,7 @@ class TableSecondController: UITableViewController {
     }
     
    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {//
-        tableView.dequeueReusableCell(withIdentifier: "SomeDayCell")
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if fewDayData.nameCity == "" {
             self.navigationItem.title = "Check your internet connection"
             let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
@@ -68,13 +66,13 @@ class TableSecondController: UITableViewController {
             cell.tempLabel4.text = ""
             cell.tempLabel5.text = ""
             return cell
-        } else {
+       } else {
             for counterRow in 0...4 {
                 if indexPath.row == counterRow{
                     let arrayDescriptionIndex = countIndex(row: indexPath.row, arrayInfoDay: fewDayData.arrayDescription)
                     let arrayIndex = countIndex(row: indexPath.row, arrayInfoDay: fewDayData.arrayTemperature)
                     let cell = Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
-                    cell.DataLabel.text = fewDayData.arrayDate[indexPath.row]//String()
+                    cell.DataLabel.text = fewDayData.arrayDate[indexPath.row]
                     cell.tempLabel1.text = "\(Int(arrayIndex[0] - 273.15))º"
                     cell.tempLabel1.text = "\(Int(arrayIndex[0] - 273.15))º"
                     cell.temaLabel2.text = String("\(Int(arrayIndex[1] - 273.15))º")
@@ -91,7 +89,10 @@ class TableSecondController: UITableViewController {
             }
             return Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
         }
+         //return Bundle.main.loadNibNamed("SomeDayCell", owner: self, options: nil)?.first as! SomeDayCell
     }
+    
+    
     //показывает картинки
     func seeImage(cloudImage: UIImageView, arrayDescription: String) {
         DispatchQueue.main.async {
@@ -120,11 +121,10 @@ class TableSecondController: UITableViewController {
         return arrayData
     }
     
-    func saveCheckItem() {
+   func saveCheckItem() {
         UserDefaults.standard.set(fewDayData.arrayDate, forKey: "dt_txt")
         UserDefaults.standard.set(fewDayData.arrayTemperature, forKey: "tempSomeDay")
         UserDefaults.standard.synchronize()
     }
-    
 }
 
