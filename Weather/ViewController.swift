@@ -1,82 +1,49 @@
 import UIKit
 
-struct infoToday {
-    let cell: Int!
-    let text1: String!
-    let text2: String!
+struct InfoToday {
+    var temp: Double = pullDataCollection("temp", 0.0)
+    var feels: Double = pullDataCollection("feels", 0.0)
+    var tempMax: Double = pullDataCollection("temp_max", 0.0)
+    var tempMin: Double = pullDataCollection("temp_min", 0.0)
+    var name: String = pullDataCollection("name", "")
+    var weatherDescription = pullDataCollection("description", "")
 }
 
 class TableViewController: UITableViewController {
-
-    var temp = 0.0
-    var feels = 0.0
-    var tempMin = 0.0
-    var tempMax = 0.0//инф о текущем дне
-    var name = ""
     
+    var infoToday = InfoToday()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(UserDefaults.standard.double(forKey: "temp"))
-        if UserDefaults.standard.double(forKey: "temp") != 0.0 {
-            temp = UserDefaults.standard.double(forKey: "temp")
-             print("temp! = \(String(describing: temp))")
-        }
-        if UserDefaults.standard.double(forKey: "feels") != 0.0 {
-            feels = UserDefaults.standard.double(forKey: "feels")
-            print("temp!! = \(String(describing: feels))")
-        }
-        if UserDefaults.standard.double(forKey: "temp_min") != 0.0 {
-            tempMin = UserDefaults.standard.double(forKey: "temp_min")
-            print("temp!!! = \(String(describing: tempMin))")
-        }
-       if UserDefaults.standard.double(forKey: "temp_max") != 0.0 {
-            tempMax = UserDefaults.standard.double(forKey: "temp_max")
-            print("temp!!!! = \(String(describing: tempMax))")
-        }
-        if UserDefaults.standard.string(forKey: "name") != nil {
-            name = UserDefaults.standard.string(forKey: "name")!
-            //print("temp!!!!! = " + name)
-        }
-        
-        self.navigationItem.title = "Погода"
-    
-        APIServices().getObjectToday(city: name) {
-            [weak self] (result: WeatherData?, error: Error?) in
-            if let error = error {
-                print("Error 1 start")
-                print("\(error)")
-                print("Error 1 finish")
-            } else if let result = result {
-                self?.update(from: result)
-            }
-        }
+        self.navigationItem.title = "Weather"
+        tableView.register(UINib(nibName: "TodayTableViewCell", bundle: nil), forCellReuseIdentifier: "TodayTableViewCell")
+        callAPIService(city: infoToday.name)
     }
     
-    private func update(from result: WeatherData) {
-        name = result.name
-        feels = result.main.feels
-        temp = result.main.temp
-        tempMin = result.main.min
-        tempMax = result.main.max
-        saveCheckItems()
-        tableView.reloadData()
-    }
-
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.row == 0 {
-            
-            let cell = Bundle.main.loadNibNamed("TodayViewCellTableViewCell", owner: self, options: nil)?.first as! TodayViewCellTableViewCell
-            cell.delegate = self //вызываем делегат и получаем все его свойства теперь будет вызван extension
-            cell.temperatureLabel.text = String("\(Int(temp - 273.15))º")
-            cell.feltLabel.text = String("\(Int(tempMin - 273.15))º/\(Int(tempMax - 273.15))º Ощущается как \(Int(feels - 273.15))º")
-            cell.nameLabel.text = name
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TodayTableViewCell", for: indexPath) as! TodayTableViewCell
+            cell.delegate = self //получаем делегат
+            //работа с IMG, cоздаем отдельный потом для загрузки картинки, так же мы решим проблему с размером без большого кода
+            DispatchQueue.main.async {
+                if let url = URL(string: WeatherCondition(self.infoToday.weatherDescription).rawValue) {
+                    if let imgData = try? Data(contentsOf: url) {
+                        cell.cloudsImageView.image = UIImage(data: imgData)
+                    }
+                }
+            }
+            if infoToday.name == "" {
+                cell.temperatureLabel.text = String("")
+                cell.feltLabel.text = String("Check your internet connection")
+                cell.nameLabel.text = infoToday.name
+            } else {
+                cell.temperatureLabel.text = String("\(Int(infoToday.temp - 273.15))º")
+                cell.feltLabel.text = String("\(Int(infoToday.tempMin - 273.15))º...\(Int(infoToday.tempMax - 273.15))º feels like \(Int(infoToday.feels - 273.15))º")
+                cell.nameLabel.text = infoToday.name
+            }
             
             return cell
         } else {
@@ -94,34 +61,63 @@ class TableViewController: UITableViewController {
             return 93
         }
     }
-    
-    func saveCheckItems() {
-        UserDefaults.standard.set(temp, forKey: "temp")
-        UserDefaults.standard.set(feels, forKey: "feels")
-        UserDefaults.standard.set(tempMax, forKey: "temp_max")
-        UserDefaults.standard.set(tempMin, forKey: "temp_min")
-        UserDefaults.standard.set(name, forKey: "name")
+    //обновляем данные
+    private func update(from result: WeatherData) {
+        infoToday.name = result.name
+        infoToday.feels = result.main.feels
+        infoToday.temp = result.main.temp
+        infoToday.tempMin = result.main.min
+        infoToday.tempMax = result.main.max
+        infoToday.weatherDescription = result.picture[0].description
+        saveCheckItems()
+        tableView.reloadData()
+    }
+    //cохраняем данные в DataStorage
+    private func saveCheckItems() {
+        UserDefaults.standard.set(infoToday.temp, forKey: "temp")
+        UserDefaults.standard.set(infoToday.feels, forKey: "feels")
+        UserDefaults.standard.set(infoToday.tempMax, forKey: "temp_max")
+        UserDefaults.standard.set(infoToday.tempMin, forKey: "temp_min")
+        UserDefaults.standard.set(infoToday.name, forKey: "name")
         UserDefaults.standard.synchronize()
     }
-}
 
-extension TableViewController: Delegate {
-    func touchInView(_ view: TodayViewCellTableViewCell) {
-        let newText = (view.nameCityField.text ?? "")
-        view.nameLabel.text = newText
-        let nameOfLabel = newText //получаем значение label из Xib.row = 0
-        APIServices().getObjectToday(city: nameOfLabel) {
+    func callAPIService(city: String) {
+        WeatherService().getObjectToday(city: city) {
             [weak self] (result: WeatherData?, error: Error?) in
             if let error = error {
-                print("no1")
-                print("\(error)")
-                print("no")
+                print("Error - \(error)")
             } else if let result = result {
+                //print(result)
                 self?.update(from: result)
                 self?.tableView.reloadData()
             }
         }
     }
+    
+}
+//получаем информацию из хранилища
+func pullDataCollection<T: Comparable>(_ key: String, _ variable: T) -> T {
+    if let _: Double = variable as? Double {
+        if UserDefaults.standard.double(forKey: key) != 0.0 {
+            return UserDefaults.standard.double(forKey: key) as! T
+        }
+        return 0.0 as! T
+    } else {
+        if UserDefaults.standard.string(forKey: key) != nil {
+            return UserDefaults.standard.string(forKey: key) as! T
+        }
+        return "" as! T
+    }
+}
+
+
+extension TableViewController: Delegate {
+    func touchInView(_ view: TodayTableViewCell) {
+        let newText = (view.nameCityField.text ?? "")
+        view.nameLabel.text = newText
+        let nameOfLabel = newText //получаем значение label из Xib.row = 0
+        callAPIService(city: nameOfLabel)    }
 }
 //вызов делегата 2 ячейки
 extension TableViewController: DayDelegate {
@@ -131,8 +127,7 @@ extension TableViewController: DayDelegate {
         //создаем TableSecondViewController
         let nextTableViewController = mainStoryboard.instantiateViewController(withIdentifier: "nextView") as! TableSecondController
         //меняем его свойство
-        print("!!!!" + name)
-        nextTableViewController.nameSity = name
+        nextTableViewController.fewDayData.nameCity = infoToday.name
         //кладем Second наверх стека и вызываем его, те другой VC
         self.navigationController?.pushViewController(nextTableViewController, animated: true)
     }
