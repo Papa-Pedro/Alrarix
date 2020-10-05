@@ -1,0 +1,14 @@
+1. 28.10.2019 - Вводное занятие (знакомство, типы данных, управление потоком, среда разработки Xcode)
+2. 31.10.2019 - Основы языка Swift (опционалы, коллекции, функции, замыкания, управления памятью)
+3. 05.11.2019 - Механизмы ООП в Swift (протоколы, классы, структуры, перечисления, методы, расширения, контроль доступа)
+4. 07.11.2019 - Interface Builder, UIKit, взаимодействие UIViewController с Intarface Builder в сторибордах (IBAction, IBOutlet)
+5. 11.11.2019 - MVC, UIViewController (основы жизненного цикла), UINavigationController, UITabbarController, storyboards, segues
+6. 14.11.2019 - UITableView, AutiLayout (основы и практика), XIBs
+7. 18.11.2019 - Работка с многопоточностью (GCD, Rest API, URLSession)
+8. 21.11.2019 - Разработка сетевого слоя приложения (Alamofire, JSON, Codable/Decodable)
+9. 25.11.2019 - AutoLayout
+10. 28.11.2019 - Компоненты UIKit, анимации, делегаты, UIGestureRecognizers
+11. 02.12.2019 - Хранение данных (UserDefaults, Keychain, CoreData, Realm)
+12. 05.12.2019 - Паттерны проектирования и архитектуры применительно к UIKit
+13. 09.12.2019 - Организация работы с кодом (Git-flow, Code-style, катологи проекта), Unit-тесты
+14. 12.12.2019 - Заключительное занятие и другое 
